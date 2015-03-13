@@ -1,3 +1,4 @@
 bower_components/
 node_modules/
-*/libs/*.*
+_dev/js/libs/
+_dev/css/libs/

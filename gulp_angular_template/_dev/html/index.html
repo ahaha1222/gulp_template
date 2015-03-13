@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app>
+    <head>
+        <meta charset="utf-8">
+        <title>Gulp Sample</title>
+        <link rel="stylesheet" href="../styles/bootstrap.css">
+        <link rel="stylesheet" href="../styles/style.min.css">
+        <script src="../scripts/jquery.js"></script>
+        <script src="../scripts/bootstrap.js"></script>
+        <script src="../scripts/angular.js"></script>
+        <script src="../scripts/main.min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $(".jquery").css("color","blue")
+            });
+        </script>
+    </head>
+    <body>
+    <div class="container">
+        <h1>Gulp Sample </h1>
+        <p class="hello">Hello World</p>
+        <p class="jquery">If this text is blue, jquery is working.</p>
+        <p class="csssample">If this text is red, CSS is working.</p>
+        <p class="scss">If this text is red, SASS is working.</p>
+        <hr>
+        <label class="label label-default">AngularJS Hello World & Bootstrap works</label><br>
+        <input type="text" ng-model="name"><p>Hello {{ name }}</p>
+    </div>
+        <script src="http://localhost:35729/livereload.js"></script>
+
+    </body>
+</html>
