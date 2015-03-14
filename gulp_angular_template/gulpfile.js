@@ -12,12 +12,6 @@ var merge = require("event-stream").merge
 var config = require("./gulp_tasks/config")
 require('require-dir')('./gulp_tasks');
 
-// CSS
-var csslint = require("gulp-csslint");
-var scsslint = require("gulp-scss-lint");
-var cssminify = require("gulp-minify-css");
-var sass = require("gulp-sass")
-
 // Bower Install
 var bower = require("bower");
 gulp.task("bower",function(){
@@ -96,7 +90,13 @@ gulp.task("build:clean:run",function(){
     seq("clean:app","clean:build",["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html","compress","watch","runserver")
 });
 
+
+
+
+
+
 // 共有アップロードzipの書き出し
+// Git等使わずに受け渡しする用です
 var zip = require("gulp-zip");
 var uploadpath = {
     source : [

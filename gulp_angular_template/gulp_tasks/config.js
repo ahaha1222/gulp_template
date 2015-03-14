@@ -14,6 +14,7 @@ var libs = {
         bowerdir + "bootstrap/dist/css/bootstrap.css.map",
     ]
 }
+
 var devroot = "_dev/"
 var approot = "_app/"
 var libdir_js = devroot + "js/libs/"
@@ -54,7 +55,7 @@ var path = {
     clean : clean,
 }
 
-// filename
+// module filename
 var filename = {
     mainjs : "main.js",
     headjs : "head.js",
