@@ -1,14 +1,8 @@
 // Global
 var gulp = require("gulp");
-var del = require("del");
-var pkg = require("./package.json");
-var plumber = require("gulp-plumber");
-var notify = require("gulp-notify");
 var webserver = require("gulp-webserver");
 var concat = require("gulp-concat");
 var seq = require("run-sequence")
-var addsrc = require("gulp-add-src")
-var merge = require("event-stream").merge
 var config = require("./gulp_tasks/config")
 require('require-dir')('./gulp_tasks');
 
@@ -97,6 +91,7 @@ gulp.task("build:clean:run",function(){
 
 // 共有アップロードzipの書き出し
 // Git等使わずに受け渡しする用です
+var del = require("del");
 var zip = require("gulp-zip");
 var uploadpath = {
     source : [
