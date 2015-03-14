@@ -22,7 +22,7 @@ gulp.task("build:css",function(){
             .pipe(csslint())
             .pipe(csslint.reporter())
             .pipe(addsrc(config.path.libs.css))
-            .pipe(concat("style.css"))
+            .pipe(concat(config.filename.maincss))
             .pipe(cssminify())
             .pipe(gulp.dest(config.path.dest.css)),
 

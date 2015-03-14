@@ -1,24 +1,3 @@
-// path
-var bowerdir = "./bower_components/"
-var sources = {
-    bower : "bower.json",
-
-    libs : {
-        js : [
-            bowerdir + "jquery/dist/jquery.js",
-            bowerdir + "bootstrap/dist/js/bootstrap.js",
-            bowerdir + "angular/angular.js",
-
-        ],
-        css : [
-            bowerdir + "bootstrap/dist/css/bootstrap.css",
-        ],
-        map :[
-            bowerdir + "bootstrap/dist/css/bootstrap.css.map",
-        ]
-    }
-}
-
 // Global
 var gulp = require("gulp");
 var del = require("del");
@@ -27,7 +6,7 @@ var plumber = require("gulp-plumber");
 var notify = require("gulp-notify");
 var webserver = require("gulp-webserver");
 var concat = require("gulp-concat");
-var seq = require("gulp-run-sequence")
+var seq = require("run-sequence")
 var addsrc = require("gulp-add-src")
 var merge = require("event-stream").merge
 var config = require("./gulp_tasks/config")
@@ -52,6 +31,7 @@ gulp.task("watch", function(){
     gulp.watch("_dev/css/*.css",["watch_css"]);
     gulp.watch("_dev/css/*.scss",["watch_scss"]);
     gulp.watch("_dev/js/*.js",["watch_js"]);
+    gulp.watch("_dev/js/head/*.js",["watch_headjs"]);
     gulp.watch("_dev/js/*.ts",["watch_ts"]);
     gulp.watch("_dev/img/**/*.*",["watch_image"]);
 });
@@ -71,9 +51,46 @@ gulp.task("watch_scss",function(){
 gulp.task("watch_js",function(){
     return seq("build:js");
 });
+
+gulp.task("watch_headjs",function(){
+    return seq("build:headjs");
+});
+
 gulp.task("watch_ts",function(){
     return seq("build:ts","build:js");
 });
+
+// サーバー起動
+gulp.task("runserver",function(){
+    gulp.src(config.path.approot)
+        .pipe(
+            webserver({
+                host: "localhost",
+                livereload: true
+            })
+        );
+});
+
+// タスク
+gulp.task("default",function(){
+    seq("watch","runserver")
+});
+gulp.task("build",function(){
+    seq(["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html")
+})
+
+gulp.task("build:run",function(){
+    seq(["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html","watch","runserver")
+});
+
+gulp.task("build:clean",function(){
+    seq("clean:app","clean:build","build")
+})
+
+gulp.task("build:clean:run",function(){
+    seq("clean:app","clean:build",["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html","watch","runserver")
+});
+
 
 // 共有アップロードzipの書き出し
 var zip = require("gulp-zip");
@@ -98,37 +115,3 @@ gulp.task("upload", ["cleandir:app","cleandir:build"], function(){
         .pipe(gulp.dest(uploadpath.dist))
     })
 });
-
-// サーバー起動
-gulp.task("runserver",function(){
-    gulp.src(config.path.approot)
-        .pipe(
-            webserver({
-                host: "localhost",
-                livereload: true
-            })
-        );
-});
-
-// タスク
-gulp.task("default",function(){
-    seq("watch","runserver")
-});
-gulp.task("build",function(){
-    seq(["build:scss","build:ts"],["build:css","build:js"],"build:html")
-})
-
-gulp.task("build:run",function(){
-    seq(["build:scss","build:ts"],["build:css","build:js"],"build:html","watch","runserver")
-});
-
-gulp.task("build:clean",function(){
-    seq("clean:app","clean:build","build")
-})
-
-gulp.task("build:clean:run",function(){
-    seq("clean:app","clean:build",["build:scss","build:ts"],["build:css","build:js"],"build:html","watch","runserver")
-});
-
-
-

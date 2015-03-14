@@ -23,6 +23,7 @@ var src = {
     html: devroot + "html/**/*.html",
     index_html : devroot + "/index.html",
     js : devroot + "js/*.js",
+    headjs : devroot + "js/head/*.js",
     buildjs : devroot + "js/build/*.js",
     ts  : devroot + "js/*.ts",
     css : devroot + "css/*.css",
@@ -53,7 +54,16 @@ var path = {
     clean : clean,
 }
 
+// filename
+var filename = {
+    mainjs : "main.js",
+    headjs : "head.js",
+    maincss : "styles.css",
+    livereload : "http://localhost:35729/livereload.js"
+}
+
 // define module
 module.exports = {
-    path : path
+    path : path,
+    filename : filename,
 }

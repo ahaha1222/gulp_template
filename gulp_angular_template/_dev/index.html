@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Gulp Sample</title>
-        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="styles/<%= maincss %>">
+        <script src="scripts/<%= headjs %>"></script>
+
     </head>
     <body>
     <div class="container">
@@ -16,12 +18,9 @@
         <label class="label label-default">AngularJS Hello World & Bootstrap works</label><br>
         <input type="text" ng-model="name"><p>Hello {{ name }}</p>
     </div>
-        <script src="../scripts/main.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                $(".jquery").css("color","blue")
-            });
-        </script>
-        <script src="http://localhost:35729/livereload.js"></script>
+
+    <script src="scripts/<%= mainjs %>"></script>
+    <script src="<%= livereload %>"></script>
     </body>
 </html>
+

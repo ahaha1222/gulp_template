@@ -1,1 +1,5 @@
-console.log("js is working");
+console.log("mainjs is working");
+$(function(){
+    $(".jquery").css("color","blue");
+});
+

@@ -1,1 +1,1 @@
-console.log("ts is working");
+console.log("maints is working");
