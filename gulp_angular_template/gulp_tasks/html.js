@@ -16,7 +16,6 @@ gulp.task("build:html",function(){
             .pipe(template(config.filename))
             .pipe(htmllint())
             .pipe(htmllint.reporter())
-            .pipe(htmlminify())
             .pipe(gulp.dest(config.path.dest.html)),
 
         gulp.src(config.path.src.index_html)
@@ -24,6 +23,17 @@ gulp.task("build:html",function(){
             .pipe(template(config.filename))
             .pipe(htmllint())
             .pipe(htmllint.reporter())
+            .pipe(gulp.dest(config.path.approot))
+    )
+});
+
+gulp.task("compress:html",function(){
+    return merge(
+        gulp.src(config.path.dest.html + "*.html")
+            .pipe(htmlminify())
+            .pipe(gulp.dest(config.path.dest.html)),
+
+        gulp.src(config.path.approut + "*.html")
             .pipe(htmlminify())
             .pipe(gulp.dest(config.path.approot))
     )

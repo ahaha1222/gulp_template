@@ -33,7 +33,6 @@ gulp.task("build:js",function(){
         gulp.src(concatfiles)
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(concat(config.filename.mainjs))
-        .pipe(jsminify())
         .pipe(gulp.dest(config.path.dest.js))
     )
 });
@@ -52,6 +51,11 @@ gulp.task("build:headjs",function(){
         .pipe(jslint())
         .pipe(jslint.reporter())
         .pipe(concat(config.filename.headjs))
+        .pipe(gulp.dest(config.path.dest.js))
+});
+
+gulp.task("compress:js",function(){
+    return gulp.src(config.path.dest.js + "*.js")
         .pipe(jsminify())
         .pipe(gulp.dest(config.path.dest.js))
-})
+});

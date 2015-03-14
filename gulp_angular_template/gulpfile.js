@@ -75,22 +75,26 @@ gulp.task("runserver",function(){
 gulp.task("default",function(){
     seq("watch","runserver")
 });
+
+gulp.task("compress",function(){
+    seq(["compress:html","compress:css","compress:js"])
+});
+
 gulp.task("build",function(){
-    seq(["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html")
+    seq(["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html","compress")
 })
 
 gulp.task("build:run",function(){
-    seq(["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html","watch","runserver")
+    seq(["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html","compress","watch","runserver")
 });
 
 gulp.task("build:clean",function(){
-    seq("clean:app","clean:build","build")
+    seq("clean:app","clean:build","build","compress")
 })
 
 gulp.task("build:clean:run",function(){
-    seq("clean:app","clean:build",["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html","watch","runserver")
+    seq("clean:app","clean:build",["build:scss","build:ts"],["build:css","build:js","build:headjs"],"build:html","compress","watch","runserver")
 });
-
 
 // 共有アップロードzipの書き出し
 var zip = require("gulp-zip");

@@ -23,7 +23,6 @@ gulp.task("build:css",function(){
             .pipe(csslint.reporter())
             .pipe(addsrc(config.path.libs.css))
             .pipe(concat(config.filename.maincss))
-            .pipe(cssminify())
             .pipe(gulp.dest(config.path.dest.css)),
 
         gulp.src(config.path.libs.map)
@@ -38,3 +37,9 @@ gulp.task("build:scss",function(){
         .pipe(sass())
         .pipe(gulp.dest(config.path.dest.scss_build))
 });
+
+gulp.task("compress:css",function(){
+    return gulp.src(config.path.dest.css + "*.css")
+        .pipe(cssminify())
+        .pipe(gulp.dest(config.path.dest.css))
+})
