@@ -61,7 +61,7 @@ _devフォルダ内の各ファイルの監視を開始します。
 
 - ```gulp build```  
 _devフォルダ内の各ファイルをビルドします。  
-css関連ファイルはscssファイルをビルド後、cssファイルと共に結合され、
+css関連ファイルはscssファイルをビルド後、cssファイルと共に結合され、  
 _app/styles/styles.css に出力されます。  
 js関連ファイルはtsファイルをビルド後、jsファイル、ライブラリ（bower）と共に結合され、  
 _app/scripts/main.jsへ出力されます。  
