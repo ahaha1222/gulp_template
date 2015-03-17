@@ -73,9 +73,9 @@ _dev/index.htmlのみ_app/index.htmlへと出力されます。
 - ```gulp build:run```  
 ```build```コマンド実行後に```gulp```（ファイル監視とローカルサーバーを起動）を実行します。  
 
-- ```gulp build:clean```
+- ```gulp build:clean```  
 _appフォルダ内のすべてのファイルと_devフォルダ内のbuild（ts、scssのビルド後のファイル）  
 を全て削除した後に、```build```コマンドを実行します。
 
-- ```gulp build:clean:run```
+- ```gulp build:clean:run```  
 ```build:clean```コマンド実行後に```gulp```コマンドを実行します。
