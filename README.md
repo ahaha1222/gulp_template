@@ -71,7 +71,7 @@ html関連ファイルは各スクリプト名のテンプレート名が変換(
 _dev/index.htmlのみ_app/index.htmlへと出力されます。
 
 - ```gulp build:run```  
-```build```コマンド実行後に```gulp```（ファイル監視とローカルサーバーを起動）を実行します。
+```build```コマンド実行後に```gulp```（ファイル監視とローカルサーバーを起動）を実行します。  
 
 - ```gulp build:clean```
 _appフォルダ内のすべてのファイルと_devフォルダ内のbuild（ts、scssのビルド後のファイル）  
